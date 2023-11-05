@@ -25,7 +25,10 @@
           pkgs = import nixpkgs { inherit system; };
           fenixPkgs = fenix.packages.${system};
           flakePkgs = {
-            rust = fenixPkgs.fromToolchainFile { dir = ./.; };
+            rust = fenixPkgs.fromToolchainFile {
+              dir = ./.;
+              sha256 = "sha256-rLP8+fTxnPHoR96ZJiCa/5Ans1OojI7MLsmSqR2ip8o=";
+            };
           };
         in
         # "unpack" the pkgs attrset into the parent namespace
@@ -36,6 +39,7 @@
             buildInputs = [
               bashInteractive
               binutils
+              cargo-edit
               gawk
               gnumake
               gnused
